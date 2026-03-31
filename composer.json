@@ -1,19 +1,17 @@
 {
-    "name": "jurapro/pop-it-mvc",
-    "description": "Simple mvc framework",
+    "name": "vasilisa321/prr1",
+    "description": "educational practice",
     "type": "project",
     "license": "MIT",
     "authors": [
         {
-            "name": "jurapro",
-            "email": "jurapro@yandex.ru"
+            "name": "vasilisa321",
+            "email": "wolpina2006@gmail.com"
         }
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": "^7.4 | ^8.0",
-        "illuminate/database": "^11.0@dev",
-        "illuminate/events": "^11.0@dev"
+        "php": "^7.4 | ^8.0"
     },
     "autoload": {
         "psr-4": {
@@ -21,5 +19,4 @@
             "": "app/"
         }
     }
- 
- }
+}
