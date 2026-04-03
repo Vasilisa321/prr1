@@ -6,5 +6,5 @@ interface IdentityInterface
 {
     public function findIdentity(int $id);
     public function getId(): int;
-    public function attempIdentity(array $credentials);
+    public function attemptIdentity(array $credentials);
 }

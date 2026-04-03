@@ -48,16 +48,17 @@ class Site
 
     public function signup(Request $request): string
     {
-        if ($request->method === 'POST' && User::create($request->all())) {
-            app()->route->redirect('/go');
+        if ($request->method==='POST' && User::create($request->all())){
+            return new View('site.signup', ['message'=>'Вы успешно зарегистрированы']);
         }
         return new View('site.signup');
     }
 
+
     public function logout(): void
     {
         Auth:: logout();
-        app()->router()->redirect('/login');
+        app()->route()->redirect('/login');
     }
 
 }
