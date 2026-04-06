@@ -1,5 +1,4 @@
 <?php
-
 namespace Src;
 
 use FastRoute\RouteCollector;
@@ -29,9 +28,25 @@ class Middleware
         $this->middlewareCollector->addGroup($prefix, $callback);
     }
 
-    public function runMiddlewares(string $httpMethod, string $uri)
+    public function runMiddlewares(string $httpMethod, string $uri): Request
     {
-        // Реализация метода
-        return new Request();
+        $request = new Request();
+
+        $routeMiddleware = app()->settings->app['routeMiddleware'] ?? [];
+
+        $dispatcherMiddleware = new Dispatcher($this->middlewareCollector->getData());
+        $routeInfo = $dispatcherMiddleware->dispatch($httpMethod, $uri);
+
+        $middlewares = $routeInfo[1] ?? [];
+
+        foreach ($middlewares as $middleware) {
+            $args = explode(':', $middleware);
+            if (isset($routeMiddleware[$args[0]])) {
+                $obj = new $routeMiddleware[$args[0]];
+                $obj->handle($request, $args[1] ?? null);
+            }
+        }
+
+        return $request;
     }
 }
