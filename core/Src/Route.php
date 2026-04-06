@@ -9,12 +9,6 @@ use FastRoute\DataGenerator\MarkBased;
 use FastRoute\Dispatcher\MarkBased as Dispatcher;
 use Src\Traits\SingletonTrait;
 
-//use FastRoute\RouteCollector;
-//use FastRoute\RouteParser\Std;
-//use FastRoute\DataGenerator\MarkBased;
-//use FastRoute\Dispatcher\MarkBased as Dispatcher;
-use Src\Traits\SingletonTrait;
-
 class Route
 {
     //Используем методы трейта
