@@ -47,10 +47,17 @@ class Application
 
     private function dbRun()
     {
-        $this->dbManager->addConnection($this->settings->getDbSetting());
-        $this->dbManager->setEventDispatcher(new Dispatcher(new Container));
-        $this->dbManager->setAsGlobal();
-        $this->dbManager->bootEloquent();
+        try {
+            $this->dbManager->addConnection($this->settings->getDbSetting());
+            $this->dbManager->setEventDispatcher(new Dispatcher(new Container));
+            $this->dbManager->setAsGlobal();
+            $this->dbManager->bootEloquent();
+
+            // Проверка подключения
+            $this->dbManager->getConnection()->getPdo();
+        } catch (\Exception $e) {
+            die('Database connection failed: ' . $e->getMessage());
+        }
     }
 
     public function run(): void
